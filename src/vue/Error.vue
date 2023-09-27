@@ -4,7 +4,7 @@
             Your browser does not support multi-thread computation.<br>
             Please use a different browser.
         </p>
-
+        <!--HTML
         <div v-if="error === 'insecure_location'">
             <h3>Security alert</h3>
 
@@ -12,6 +12,7 @@
             To stay safe, use Vanity-ETH on <a href="https://vanity-eth.tk" target="_blank">vanity-eth.tk</a>, or
             download the latest build <a href="https://git.io/veth-dl" target="_blank">here</a> to use offline.
         </div>
+        -->
         <p v-else v-html="error.replace('\n', '<br>')"></p>
     </div>
 </template>

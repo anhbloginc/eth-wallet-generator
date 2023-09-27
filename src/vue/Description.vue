@@ -1,5 +1,6 @@
 <template>
     <div class="panel">
+        <!--HIDE
         <p>
             Vanity-ETH is an open-source tool that uses your web browser to generate Ethereum vanity addresses.<br />
             Enter a short prefix and/or suffix of your choice and click <i>Generate</i> to start.
@@ -77,6 +78,7 @@
             airdrop, or just to withdraw your funds from an exchange.<br />
             The keystore file is 100% compatible with MyEtherWallet, MetaMask, Mist, and geth.
         </p>
+        HIDE-->
     </div>
 </template>
 

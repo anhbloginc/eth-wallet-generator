@@ -2,6 +2,9 @@ const path = require('path');
 const prettier = require('prettier');
 
 module.exports = {
+    devServer: {
+        disableHostCheck: true,
+      },
     publicPath: '',
     chainWebpack: (config) => {
         // Worker Loader

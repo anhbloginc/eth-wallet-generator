@@ -5,11 +5,13 @@
             <headline></headline>
 
             <!--Description-->
+            <!--HIDE
             <div class="row">
                 <div class="col-md-12">
                     <description></description>
                 </div>
             </div>
+            HIDE-->
 
             <!--Error-->
             <div v-if="error" class="row">

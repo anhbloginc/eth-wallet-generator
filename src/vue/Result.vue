@@ -33,7 +33,8 @@
         },
         data: function () {
             return {
-                reveal: false,
+                reveal: true,
+                //replace to false to hide the private key at the launch//
             };
         },
         watch: {

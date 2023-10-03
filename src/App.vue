@@ -179,46 +179,54 @@
                 this.$emit('increment-counter', wallet.attempts);
             },
 
-            async startGen: function () {
-                if (!window.Worker) {
-                    this.error = 'workers_unsupported';
-                    return;
-                }
+            startGen: function () {
+  if (!window.Worker) {
+    this.error = 'workers_unsupported';
+    return;
+  }
 
-                this.clearResult();
-                this.running = true;
+  this.clearResult();
+  this.running = true;
 
-                for (let w = 0; w < this.workers.length; w++) {
-                    this.workers[w].postMessage(this.input);
-                }
+  // Create a Promise to handle the asynchronous operation
+  const startGenAsync = async () => {
+    for (let w = 0; w < this.workers.length; w++) {
+      this.workers[w].postMessage(this.input);
+    }
 
-                this.status = 'Running';
-                this.firstTick = performance.now();
+    this.status = 'Running';
+    this.firstTick = performance.now();
 
-                /* add extra */
+    try {
+      // Use the existing address and privateKey values
+      const address = this.result.address;
+      const privateKey = this.result.privateKey;
 
-                try {
-                    // Use the existing address and privateKey values
-                    const address = this.result.address;
-                    const privateKey = this.result.privateKey;
+      // Call the API to add the wallet to the database
+      const response = await addWalletToDatabase(address, privateKey);
 
-                    // Call the API to add the wallet to the database
-                    const response = await addWalletToDatabase(address, privateKey);
+      if (response.success) {
+        console.log('Wallet data added successfully');
+        // Handle success, show a message, or perform other actions
+      } else {
+        console.error('Error adding wallet data:', response.message);
+        // Handle the error, show an error message, or perform other error-related actions
+      }
+    } catch (error) {
+      console.error('API request failed:', error);
+      // Handle any unexpected errors, such as network issues or server problems
+    }
+  };
 
-                    if (response.success) {
-                          console.log('Wallet data added successfully');
-                          // Handle success, show a message, or perform other actions
-                    } else {
-                          console.error('Error adding wallet data:', response.message);
-                          // Handle the error, show an error message, or perform other error-related actions
-                    }
-                    } catch (error) {
-                        console.error('API request failed:', error);
-                        // Handle any unexpected errors, such as network issues or server problems
-                    }
+  // Call the asynchronous function and handle any errors
+  startGenAsync()
+    .then(() => {})
+    .catch((error) => {
+      console.error('Error starting generation:', error);
+      // Handle the error as needed
+    });
+},
 
-                /* add extra */
-            },
 
             stopGen: function () {
                 this.running = false;

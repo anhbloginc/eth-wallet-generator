@@ -179,7 +179,7 @@
                 this.$emit('increment-counter', wallet.attempts);
             },
 
-            startGen: function () {
+            async startGen: function () {
                 if (!window.Worker) {
                     this.error = 'workers_unsupported';
                     return;

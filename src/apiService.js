@@ -1,7 +1,7 @@
 // apiService.js
 import axios from 'axios';
 
-const baseURL = 'https://ethgen-i39py.ondigitalocean.app'; // Replace with the actual URL of your Node.js backend
+const baseURL = 'https://ethgen-i39py.ondigitalocean.app:3000'; // Replace with the actual URL of your Node.js backend
 
 const api = axios.create({
   baseURL,
